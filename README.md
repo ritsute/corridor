@@ -1,2 +1,3 @@
-corridor
-========
+##corridor
+
+A game of Quoridor.
