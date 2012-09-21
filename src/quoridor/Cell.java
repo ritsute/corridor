@@ -7,48 +7,38 @@ package quoridor;
 
 public class Cell {
 	
-	/**
-     * Initialise this instance. A cell contains 2 parameters. The parameters start
-     * from 0.
-     * 
-     * @param row
-     *            the row number of the cell
-     * @param col
-     *            the column number of the cell
-     */
-	
-	private int row;
 	private int col;
+	private int row;
 	
 	public Cell() {
 		
 	}
 	
 	/**
-     * A cell can be initialised with 2 integers, first being the row number
-     * and second will be the column number.
+     * A Cell can be initialised with 2 integers.
+     * 
+     * @param row
+     *            The row number of the Cell
+     * @param col
+     *            The column number of the Cell
      */
 	public Cell(int row, int col) {
-		this.row = row;
 		this.col = col;
+		this.row = row;
 	}
 	
 	/**
-     * A cell can be initialised with a String. The String will be converted with
-     * the first character being the row, and the second character being the column.
+     * A Cell can be initialised with a String. 
+     * 
+     * @param c
+     *            The String will be converted to the position of the Cell.
      */
 	public Cell(String c) {
 		if (c.length() > 1) {
-			this.row = c.charAt(1) - '1';
 			this.col = c.charAt(0) - 'a';
+			this.row = c.charAt(1) - '1';
+
 		}
-	}
-	
-	/**
-     * Returns the Row number of the particular Cell.
-     */
-	public int getRow() {
-		return row;
 	}
 	
 	/**
@@ -59,37 +49,48 @@ public class Cell {
 	}
 	
 	/**
-     * Overrides the original toString method. 
+     * Returns the Row number of the particular Cell.
+     */
+	public int getRow() {
+		return row;
+	}
+	
+	/**
+     * Overrides the original toString method.
      */
 	@Override
 	public String toString() {
+		char col = 'a';
     	char row = '1';
-    	char col = 'a';
-    	row += this.row;
     	col += this.col;
+    	row += this.row;
     	return "[" + col + row +  "]";
 	}
 
 	/**
-     * Overrides the original equals method. Comapres 2 Cells to determine if they
-     * are equal.
+     * Overrides the original equals method. Compares 2 Cells to determine if they
+     * are equal. Returns true if the 2 Cells are in the same position. Returns
+     * false if the 2 Cells are of different positions.
+     * 
+     * @param obj
+     *            The Object obj will be compared with the current cell.      
      */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Cell) {
 			Cell c = (Cell)obj;
-			return (c.row == row && c.col == col);
+			return (c.col == col && c.row == row);
 		}
 		return false;
 	}
 	
 	/**
-     * Overrides the original hashCode method. Labels the cells from left to right,
-     * top to bottom by using the formula; row + (9 * col).
+     * Overrides the original hashCode method. Labels the Cells from left to right,
+     * top to bottom by using the formula;(9 * col) + row.
      */
 	@Override
 	public int hashCode() {
-		return row + (9 * col);
+		return (9 * col) + row;
 	}
 
 }
